@@ -1,22 +1,38 @@
-let nums = [1, 1, 2, 2, 3, 4, 4, 5, 5, 6, 6,];
-console.log (nums);
+const buildSumOfArray = (arr) => {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  }
+  return sum;
+};
 
-let numSet = new Set(nums)
-console.log (numSet);
+const buildSumOfSet = (set) => {
+  let sum = 0;
 
-let numSum = 0;
-for (let i = 0; i < nums.length; i++) {
-    numSum += nums [i];
-}
-console.log (numSum);
+  for (const num of set) {
+    sum += num;
+  }
+  return sum;
+};
 
-let numSetSum = 0;
+const singleNumber = (nums) => {
+  let numSum = buildSumOfArray(nums);
+  let numSet = new Set(nums);
+  
+  let numSetSum = buildSumOfSet(numSet);
+  let numSetSum2 = numSetSum * 2;
 
-for (const num of numSet) {
-    numSetSum += num;
-}
-let numSetSum2 = numSetSum * 2;
+  let singleNumber = numSetSum2 - numSum;
+  return singleNumber;
+};
 
-console.log (numSetSum2) -numSum;
-let singleNumber = numSetSum2 -numSum
-console.log (`The single number is ${singleNumber}`)
+let numsArray = [
+  [1, 1, 2, 2, 3, 4, 4, 5, 5, 6, 6],
+  [1, 3, 2, 2, 3, 4, 4, 5, 11, 5, 6, 6],
+  [1, 1, 2, 2, 3, 3, 4, 5, 5, 4, 6],
+  [1, 1, 2, 2, 3, 4, 3, 5, 5, 6, 6],
+];
+
+numsArray.forEach((nums) => {
+  console.log(`The single number is ${singleNumber(nums)}`);
+});
